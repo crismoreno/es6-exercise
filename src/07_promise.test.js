@@ -5,7 +5,7 @@
 describe('a Promise represents an operation that hasn`t completed yet, but is expected in the future', () => {
 
   it('`Promise` is a global function', () => {
-    const expectedType = typeof(Promise)
+    const expectedType = 'function'
 
     expect(typeof Promise).toEqual(expectedType)
   })
@@ -14,6 +14,7 @@ describe('a Promise represents an operation that hasn`t completed yet, but is ex
 
     it('resolve a promise by calling the `resolve` function given as first parameter of the function parameter', (done) => {
       let promise = new Promise((resolve) => {
+        resolve();
       })
 
       promise
@@ -22,7 +23,8 @@ describe('a Promise represents an operation that hasn`t completed yet, but is ex
     })
 
     it('rejecting a promise is done by calling the callback given as 2nd parameter of the function parameter', (done) => {
-      let promise = new Promise(() => {
+      let promise = new Promise((resolve, reject) => {
+        reject()
       })
 
       promise
@@ -43,7 +45,7 @@ describe('a promise can be created in multiple ways', () => {
   describe('most commonly Promises get created using the constructor', () => {
 
     it('by passing a resolve function to it', () => {
-      const promise = new Promise(() => resolve())
+      const promise = new Promise((resolve) => resolve())
       return promise
     })
   })
