@@ -5,7 +5,7 @@
 describe('a Promise represents an operation that hasn`t completed yet, but is expected in the future', () => {
 
   it('`Promise` is a global function', () => {
-    const expectedType = '???'
+    const expectedType = typeof(Promise)
 
     expect(typeof Promise).toEqual(expectedType)
   })
