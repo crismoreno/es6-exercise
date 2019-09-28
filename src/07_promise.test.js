@@ -63,7 +63,7 @@ describe('a promise can be created in multiple ways', () => {
       // Note: In that case you need to modify the expect!!!
       promise
         .then(value => {
-          expect(value).toEqual([1, 2])
+          expect(value).toEqual([1, 2, 3])
           done()
         })
         .catch(e => {
@@ -98,7 +98,7 @@ describe('chaining multiple promises can enhance readability', () => {
     it('`then()` receives the result of the promise it was called on', () => {
       const wordsPromise = Promise.resolve('one   space     between each     word')
       return wordsPromise
-        .then(string => removeMultipleSpaces())
+        .then(string => removeMultipleSpaces(string))
         .then(actual => {
           expect(actual).toEqual('one space between each word')
         })
@@ -111,6 +111,7 @@ describe('chaining multiple promises can enhance readability', () => {
       const wordsPromise = Promise.resolve('Sentence without       an end')
       return wordsPromise
         .then(removeMultipleSpaces)
+        .then( result => `${result}.`)
         .then(actual => {
           expect(actual).toEqual('Sentence without an end.')
         })
@@ -122,10 +123,10 @@ describe('chaining multiple promises can enhance readability', () => {
     it('order of the `then()`s matters', () => {
       const wordsPromise = Promise.resolve('Sentence without       an end ')
       return wordsPromise
-        .then(appendPeriod)
-        .then(trim)
-        .then(removeMultipleSpaces)
-        .then(actual => {
+      .then(trim)
+      .then(removeMultipleSpaces)
+      .then(appendPeriod)
+      .then(actual => {
           expect(actual).toEqual('Sentence without an end.')
         })
     })
