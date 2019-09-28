@@ -101,7 +101,7 @@ describe('destructuring objects', () => {
 describe('destructuring can also have default values', () => {
 
   it('for an empty array', () => {
-    const [a:1] = [1]
+    const [a=1] = []
 
     expect(a).toEqual(1)
   })
@@ -187,7 +187,7 @@ describe('assign object property values to new variables while destructuring', (
 
   describe('for simple objects', () => {
     it('use a colon after the property name, like so `propertyName: newName`', () => {
-      const [{x: newName}, {y}] = [{x: 1}, {y: 1}]
+      const [{x: y}] = [{x: 1}]
 
       expect(y).toEqual(1)
     })

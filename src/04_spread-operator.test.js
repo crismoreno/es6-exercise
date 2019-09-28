@@ -32,7 +32,7 @@ describe('spread with arrays', () => {
         expect(magicNumbers[0]).toEqual(magicA)
         expect(magicNumbers[1]).toEqual(magicB)
       }
-      fn(magicNumbers[0], magicNumbers[1])
+      fn(...magicNumbers)
     })
   })
 })
@@ -51,7 +51,7 @@ describe('spread with strings', () => {
   })
 
   it('extracts each array item', () => {
-    const [a,b,c] = ['1', '2', ...'12']
+    const [, a, b] = ['a', ...'12']
 
     expect(a).toEqual('1')
     expect(b).toEqual('2')
